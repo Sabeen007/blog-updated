@@ -1,0 +1,182 @@
+{% extends 'admin/main.html' %}
+{% load static %}
+{% block title %}
+  Dashboard
+{% endblock %}
+{% block style %}
+  <style>
+    .card img {
+      height: 200px;
+      object-fit: cover;
+    }
+  </style>
+{% endblock %}
+{% block content %}
+  <div class="bg-gray-100 min-h-screen p-6">
+    <div class="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8">
+      <!-- Profile Details Form -->
+      <div class="bg-white p-8 rounded-lg shadow-lg w-full lg:w-1/2">
+        <h1 class="text-2xl font-bold mb-6 text-center">Profile</h1>
+        <form id="profileForm" action="" method="POST" class="space-y-4" enctype="multipart/form-data">
+          <!-- First Name -->
+          {% csrf_token %}
+
+          <div>
+            <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
+            <input type="text" id="firstName" name="firstName" value="{{ request.user.first_name }}" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your first name" />
+          </div>
+
+          <div>
+            <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+            <input type="text" id="lastName" name="lastName" value="{{ request.user.last_name }}" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your last name" />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="email" id="email" name="email" value="{{ request.user.username }}" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your email" />
+          </div>
+
+          <div>
+            <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
+            <input type="file" id="image" name="image" accept="image/*" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+
+          <div>
+            <label for="contact" class="block text-sm font-medium text-gray-700">Contact Number</label>
+            <input type="tel" id="contact" name="contact" value="{{ request.user.profile.contact }}" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your contact number" />
+          </div>
+
+          <div>
+            <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+            <input type="text" id="address" name="address" value="{{ request.user.profile.address }}" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your address" />
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Update Profile</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="bg-white p-8 rounded-lg shadow-lg w-full lg:w-1/2">
+        <h1 class="text-2xl font-bold mb-6 text-center">Change Password</h1>
+        <form id="passwordForm" action="{% url 'change-password' %}" method="POST" class="space-y-4">
+          {% csrf_token %}
+          <div>
+            <label for="oldPassword" class="block text-sm font-medium text-gray-700">Old Password</label>
+            <div class="d-flex gap-2">
+              <input type="password" id="oldPassword" name="oldPassword" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your old password" />
+              <i class="bi bi-eye content-center font-medium text-xl" id="viewPassword"></i>
+            </div>
+          </div>
+
+          <div>
+            <label for="newPassword" class="block text-sm font-medium text-gray-700">New Password</label>
+            <input type="password" id="newPassword" name="newPassword" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your new password" />
+          </div>
+
+          <div>
+            <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm New Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Confirm your new password" />
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Change Password</button>
+          </div>
+        </form>
+
+        <div class="mx-auto flex justify-center">
+          <div class="bg-white p-6">
+            <h2 class="mb-1 text-center">Profile</h2>
+            {% if latest_image %}
+            <img src="{{ latest_image.image.url }}" class="profile-display" alt="Profile Image" style="height:200px !important" />
+            {% else %}
+            <img src="{% static 'img/profile.jpeg' %}" class="profile-display" alt="Profile Image" />
+            {% endif %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+ <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    {% for image in profile_images|slice:":999" %}
+      {% if forloop.counter0|divisibleby:3 %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <div class="container py-4">
+            <div class="row justify-content-center">
+      {% endif %}
+
+      <div class="col-md-4">
+        <div class="card mx-auto mb-4" style="width: 18rem;">
+          <img src="{{ image.image.url }}" class="card-img-top" alt="Profile Image" />
+          <div class="card-body text-center">
+            <h5 class="card-title">
+              {% if image.status == 0 %}
+                Deactive
+              {% else %}
+                Active
+              {% endif %}
+            </h5>
+            <form method="POST" action="{% url 'activate_profile_image' %}">
+              {% csrf_token %}
+              <input type="hidden" name="image_id" value="{{ image.id }}">
+              {% if image.status == 0 %}
+                <button type="submit" class="btn btn-success">Activate</button>
+              {% else %}
+                <button type="submit" class="btn btn-danger">Deactivate</button>
+              {% endif %}
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {% if forloop.counter|divisibleby:3 or forloop.last %}
+            </div> <!-- end row -->
+          </div> <!-- end container -->
+        </div> <!-- end carousel-item -->
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Carousel Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+{% endblock %}
+{% block scripts %}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).on('change', '#image', function (event) {
+      const [file] = event.target.files
+      if (file) {
+        const reader = new FileReader()
+        reader.onload = function (e) {
+          $('.profile-display').attr('src', e.target.result)
+        }
+        reader.readAsDataURL(file)
+      }
+    })
+  </script>
+  <script>
+    $(document).on('click', '#viewPassword', function () {
+      $('#passwordForm input[type="password"], #passwordForm input[type="text"]').each(function () {
+        const $field = $(this)
+        const currentType = $field.attr('type')
+        const newType = currentType === 'password' ? 'text' : 'password'
+        $field.attr('type', newType)
+      })
+    
+      $(this).toggleClass('bi-eye bi-eye-slash')
+    })
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends 'admin/main.html' %}
+
+{% block title %}
+  Dashboard
+{% endblock %}
+
+{% block style %}
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-family: Arial, sans-serif;
+    }
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    img {
+      max-width: 100px;
+      height: auto;
+    }
+    .action-buttons a {
+      margin-right: 5px;
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+    }
+    .edit {
+      background-color: #4caf50;
+      color: white;
+    }
+    .delete {
+      background-color: #f44336;
+      color: white;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="bg-gray-100 min-h-screen p-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-white p-8 rounded-lg shadow-lg">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-xl font-bold">Blog List</h2>
+          <!-- Fixed URL name for Add Blog -->
+          <a href="{% url 'blog-create-page' %}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium">Add Blog</a>
+        </div>
+
+        <table class="min-w-full bg-white border border-gray-300">
+          <thead>
+            <tr class="bg-gray-200">
+              <th class="py-2 px-4 border-b text-left text-sm font-medium text-gray-700">S.N.</th>
+              <th class="py-2 px-4 border-b text-left text-sm font-medium text-gray-700">Title</th>
+              <th class="py-2 px-4 border-b text-left text-sm font-medium text-gray-700">Category</th>
+              <th class="py-2 px-4 border-b text-left text-sm font-medium text-gray-700">Image</th>
+              <th class="py-2 px-4 border-b text-left text-sm font-medium text-gray-700">Description</th>
+              <th class="py-2 px-4 border-b text-left text-sm font-medium text-gray-700">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for blog in blogs %}
+              <tr class="hover:bg-gray-50">
+                <td class="py-2 px-4 border-b">{{ forloop.counter }}</td>
+                <td class="py-2 px-4 border-b">{{ blog.title }}</td>
+                <td class="py-2 px-4 border-b">{{ blog.category.name }}</td>
+                <td class="py-2 px-4 border-b">
+                  <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="w-20 h-20 object-cover rounded-md" />
+                </td>
+                <td class="py-2 px-4 border-b">{{ blog.description|truncatechars:15 }}</td>
+                <td class="py-2 px-4 border-b">
+                  <div class="flex space-x-2">
+                    <a href="{% url 'admin-edit-blog' blog.id %}" class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md text-sm">Edit</a>
+                    <button type="button" class="btn btn-primary text-white px-3 py-1 rounded-md text-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ blog.id }}">View</button>
+                    <form method="POST" action="{% url 'delete-blog' %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="blog_id" value="{{ blog.id }}" />
+                      <button type="submit" onclick="return confirm('Are you sure you want to delete this blog?')" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm">Delete</button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+
+              {% include 'user/blogview.html' %}
+            {% empty %}
+              <tr>
+                <td colspan="6" class="py-4 text-center text-gray-500">No blogs found.</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}

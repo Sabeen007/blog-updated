@@ -1,0 +1,46 @@
+{% extends 'layout/main.html' %}
+{% block title %}
+  Register
+{% endblock %}
+{% block content %}
+  <div class="bg-info">
+    <div class="container-fluid text-dark py-3">
+      <section class="text-center">
+        <h1 class="display-6">Register</h1>
+      </section>
+    </div>
+    <section class="container my-2 w-20 p-2">
+      <form action="" method="POST" class="row g-3 p-2 bg-dark text-light">
+        {% csrf_token %}
+        <div class="col-md-6">
+          <label for="validationCustom01" class="form-label">First name</label>
+          <input type="text" class="form-control" id="validationCustom01" name="firstname" />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom02" class="form-label">Last name</label>
+          <input type="text" class="form-control" id="validationCustom02" name="lastname" />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div>
+          <label for="inputEmail4" class="form-label">Email</label>
+          <input type="email" class="form-control" name="email" id="inputEmail4" />
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <label for="inputPassword4" class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" id="inputPassword4" />
+          </div>
+          <div class="col-md-6">
+            <label for="inputPassword5" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" name="confirmpassword" id="inputPassword5" />
+          </div>
+        </div>
+
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+      </form>
+    </section>
+  </div>
+{% endblock %}

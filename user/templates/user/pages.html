@@ -1,0 +1,64 @@
+{% extends 'admin/main.html' %}
+{% block title %}
+  Dashboard
+{% endblock %}
+{% block content %}
+  <div class="bg-gray-100 min-h-screen p-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold">Add Page</h2>
+        <a href="{% url 'pageslist-page' %}" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium">Back</a>
+      </div>
+
+      <div class="bg-white p-8 rounded-lg shadow-lg">
+        <form class="space-y-6" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="inputtitle4" class="block text-sm font-medium text-gray-700">Title</label>
+              <input type="text" id="inputtitle4" name="title" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter title" />
+            </div>
+            <div>
+              <label for="inputslug4" class="block text-sm font-medium text-gray-700">Slug</label>
+              <input type="text" id="inputslug4" name="slug" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter slug" readonly/>
+            </div>
+          </div>
+
+          <div>
+            <label for="formFile" class="block text-sm font-medium text-gray-700">Image</label>
+            <input type="file" id="formFile" name="image" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+
+          <div>
+            <label for="inputstatus2" class="block text-sm font-medium text-gray-700">Status</label>
+            <select id="inputstatus2" name="status" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="">Select status</option>
+              <option value="1">Activate</option>
+              <option value="0">Deactivate</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="exampleFormControlTextarea1" class="block text-sm font-medium text-gray-700">Description</label>
+            <textarea id="exampleFormControlTextarea1" name="description" rows="4" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Write a description..."></textarea>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block scripts %}
+  <script>
+    $(document).on('keyup', '#inputtitle4', function () {
+      let val = $(this).val()
+      val = val.replace(/\s+/g, '-').toLowerCase()
+      $('#inputslug4').val(val)
+    })
+  </script>
+{% endblock %}
+

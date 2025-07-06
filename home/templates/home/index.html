@@ -1,0 +1,269 @@
+{% extends 'layout/main.html' %}
+{% load static %}
+
+{% block title %}Techno-lab{% endblock %}
+
+{% block style %}
+<style>
+  body {
+    font-family: 'Quintessential', cursive;
+    overflow-x: hidden;
+  }
+
+  .carousel-item img {
+    height: 90vh;
+    object-fit: cover;
+  }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="about my-5" id="About">
+  <div class="container">
+    <div class="text-center my-5">
+      <h1 data-aos="fade-up" data-aos-offset="200">About <span class="text-primary">Me</span></h1>
+      <hr class="w-25 m-auto">
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-6 col-12" data-aos="zoom-in-right" data-aos-offset="200">
+        <h1>what do you <span class="text-primary">want to know?</span></h1>
+        <p class="p-2">
+          use our powerful mobile-first flexbox grid to build
+          layouts of all shapes and sizes thanks to the twelve
+          column system , six defult responsive tires, sass
+          variables and mixins, and dozens of predefined classes
+        </p>
+        <button type="button" class="btn btn-light mb-5">more about me</button>
+
+
+        <div class="accordion" id="accordionExample" data-aos="zoom-in-right" data-aos-offset="200">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                My hobbies
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>This is the first item’s accordion body.</strong> It is shown by default, until the collapse
+                plugin adds the appropriate classes that we use to style each element.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                My qualification
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>This is the second item’s accordion body.</strong> It is hidden by default, until the collapse
+                plugin adds the appropriate classes that we use to style each element.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                My dreams
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse
+                plugin adds the appropriate classes that we use to style each element.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-lg-6 col-12 m-auto text-end" data-aos="zoom-in-left" data-aos-offset="200">
+        <img src="{% static 'img/blogSix.jpeg' %}" class="img-fluid img-thumbnail">
+
+      </div>
+    </div>
+
+  </div>
+</section>
+<section class="Services py-5 bg-light" id="Services">
+  <div class="container" data-aos="fade-down" data-aos-offset="200">
+    <div class="text-center my-5">
+      <h1>Our <span class="text-primary">Services</span></h1>
+      <hr class="w-25 m-auto">
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-4 col-lg-4 col-12">
+        <div class="card bg-info">
+          <div class="card-body">
+            <i class="bi bi-person bg-info p-2 text-dark rounded mb-2"></i>
+            <h5 class="card-title">SEO</h5>
+            <p class="card-text">With supporting text below as a natural lead in to additional content</p>
+            <a href="#" class="btn btn-primary">Book now!</a>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="col-sm-12 col-md-4 col-lg-4 col-12">
+        <div class="card bg-info">
+          <div class="card-body">
+            <i class="bi bi-person bg-info p-auto text-dark rounded mb-2"></i>
+            <h5 class="card-title">Web Design</h5>
+            <p class="card-text">With supporting text below as a natural lead in to additional content</p>
+            <a href="#" class="btn btn-primary">Book now!</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-4 col-lg-4 col-12">
+        <div class="card bg-info">
+          <div class="card-body">
+            <i class="bi bi-person bg-info p-2 text-dark rounded mb-2"></i>
+            <h5 class="card-title">Graphic design</h5>
+            <p class="card-text">With supporting text below as a natural lead in to additional content</p>
+            <a href="#" class="btn btn-primary">Book now!</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="row m-5">
+      <div class="col-sm-12 col-md-4 col-lg-4 col-12">
+        <div class="card bg-info">
+          <div class="card-body">
+            <i class="bi bi-person bg-info p-2 text-dark rounded mb-2"></i>
+            <h5 class="card-title">Web devlopment</h5>
+            <p class="card-text">With supporting text below as a natural lead in to additional content</p>
+            <a href="#" class="btn btn-primary">Book now!</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-4 col-lg-4 col-12">
+        <div class="card bg-info">
+          <div class="card-body">
+            <i class="bi bi-person bg-info p-2 text-dark rounded mb-2"></i>
+            <h5 class="card-title">App devlopment</h5>
+            <p class="card-text">With supporting text below as a natural lead in to additional content</p>
+            <a href="#" class="btn btn-primary">Book now!</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-4 col-lg-4 col-12">
+        <div class="card bg-info">
+          <div class="card-body">
+            <i class="bi bi-person bg-info p-2 text-dark rounded mb-2"></i>
+            <h5 class="card-title">Graphic design</h5>
+            <p class="card-text">With supporting text below as a natural lead in to additional content</p>
+            <a href="#" class="btn btn-primary">Book now!</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+<section class="team my-5 text-center" id="Team">
+  <div class="container">
+    <div class="text-center my-5" data-aos="zoom-in-down" data-aos-offset="200">
+      <h1>Our <span class="text-primary">Team</span></h1>
+      <hr class="w-25 m-auto">
+
+
+    </div>
+    <div class="row" data-aos="flip-right" data-aos-offset="200">
+      <div class="col-sm-12 col-md-4 col-lg-4 col-12">
+        <div class="card bg-info text-dark" style="width: 18rem;">
+          <img src="{% static 'img/blogThree.jpg' %}" class="card-img-top" alt="img not found">
+          <div class="card-body">
+            <h5 class="card-title">Sabin B.k</h5>
+            <p class="card-text">Full Stack Web Developer</p>
+            <a href="#" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-4 col-12">
+        <div class="card bg-info text-dark" style="width: 18rem;">
+          <img src="{% static 'img/blogTwo.jpeg' %}" class="card-img-top" alt="img not found">
+          <div class="card-body">
+            <h5 class="card-title">Sabina Pariyar</h5>
+            <p class="card-text">Back End Developer</p>
+            <a href="#" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-4 col-12">
+        <div class="card bg-info text-dark" style="width: 18rem;">
+          <img src="{% static 'img/blogOne.jpeg' %}" class="card-img-top" alt="">
+          <div class="card-body">
+            <h5 class="card-title">Pratik B.k</h5>
+            <p class="card-text">Front End Developer</p>
+            <a href="#" class="btn btn-primary">Read MOre</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</section>
+<section class="Contact py-5" id="Contact">
+  <div class="container">
+    <div class="text-center my-5" data-aos="zoom-in-up" data-aos-offset="200">
+      <h1>Feel Free <span class="text-primary">To Connect</span></h1>
+      <hr class="w-25 m-auto">
+
+
+    </div>
+    <div class="row" data-aos="zoom-in-right" data-aos-offset="200">
+      <div class="col-sm-12 col-md-6 col-lg-6 col-12">
+        <form class="row g-3">
+          
+          <div class="col-md-6">
+            <label for="fullName" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="fullName">
+          </div>
+          <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Email</label>
+            <input type="email" class="form-control" id="inputEmail4">
+          </div>
+          <div class="col-12">
+            <label for="inputAddress" class="form-label">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+          </div>
+          <div class="col-12">
+            <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+            <input type="text" id="subject" class="form-control" placeholder="Enter the subject">
+          </div>
+
+          <div class="col-12">
+            <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+            <textarea id="message" class="form-control" placeholder="Enter your message"></textarea>
+          </div>  
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-6 col-12 m-auto text-end" data-aos="zoom-in-left" data-aos-offset="200">
+        <img src="{% static 'img/slideBye.jpg' %}" class="img-fluid img-thumbnail p-4">
+      </div>
+    </div>
+
+
+  </div>
+
+</section>
+
+{% endblock %}

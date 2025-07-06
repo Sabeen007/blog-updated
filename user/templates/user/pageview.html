@@ -1,0 +1,28 @@
+<div class="modal fade" id="exampleModal{{ page.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel{{ page.id }}">{{ page.title|truncatechars:50 }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body space-y-4">
+        <div>
+          <img src="{{ page.image.url }}" alt="page Image" class="w-full max-h-80 object-cover rounded-md" />
+        </div>
+        <div>
+          <strong>status</strong> {{ page.status }}
+        </div>
+        
+        <div>
+          <strong>Description:</strong>
+          <div class="mt-2 text-gray-700 max-h-60 overflow-y-auto whitespace-pre-wrap break-words">{{ page.description }}</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

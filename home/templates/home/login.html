@@ -1,0 +1,24 @@
+{% extends 'layout/main.html' %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<div class="bg-info md-200">
+    <div class="container bg-primary justify-content-center align-item-center text-dark mt-5 p-4 rounded" style="width: 30%;">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <h2 class="text-center">Login from</h2>
+            <label>Username/Email</label>
+            <input type="text" name="email" placeholder="User/Email Id" class="form-control">
+            <label for="pwd" class="form-label">Password</label>
+            <input type="password" id="pwd" name="password" placeholder="Enter the password" class="form-control" required>
+
+            <input type="submit" name="Login" value="Login" class="btn btn-success mt-5">
+            <input type="reset" name="reset" value="Reset" class="btn btn-danger mt-5">
+        </form>
+    </div>
+</div> 
+
+{% endblock %}
+
+    
