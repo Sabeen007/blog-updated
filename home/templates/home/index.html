@@ -179,42 +179,24 @@
 <section class="team my-5 text-center" id="Team">
   <div class="container">
     <div class="text-center my-5" data-aos="zoom-in-down" data-aos-offset="200">
-      <h1>Our <span class="text-primary">Team</span></h1>
+      <h1>Latest <span class="text-primary">Blog</span></h1>
       <hr class="w-25 m-auto">
 
 
     </div>
     <div class="row" data-aos="flip-right" data-aos-offset="200">
+      {% for blog in blogs %}
       <div class="col-sm-12 col-md-4 col-lg-4 col-12">
         <div class="card bg-info text-dark" style="width: 18rem;">
-          <img src="{% static 'img/blogThree.jpg' %}" class="card-img-top" alt="img not found">
+          <img src="{{blog.image.url}}" class="card-img-top" alt="img not found" height="200px">
           <div class="card-body">
-            <h5 class="card-title">Sabin B.k</h5>
-            <p class="card-text">Full Stack Web Developer</p>
-            <a href="#" class="btn btn-primary">Read More</a>
+            <h5 class="card-title">{{blog.title}} </h5>
+            <p class="card-text">{{blog.category.name}} </p>
+            <a href="{% url 'blog-detail' blog.slug %}" class="btn btn-primary">Read More</a>
           </div>
         </div>
       </div>
-      <div class="col-sm-12 col-md-4 col-lg-4 col-12">
-        <div class="card bg-info text-dark" style="width: 18rem;">
-          <img src="{% static 'img/blogTwo.jpeg' %}" class="card-img-top" alt="img not found">
-          <div class="card-body">
-            <h5 class="card-title">Sabina Pariyar</h5>
-            <p class="card-text">Back End Developer</p>
-            <a href="#" class="btn btn-primary">Read More</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-4 col-lg-4 col-12">
-        <div class="card bg-info text-dark" style="width: 18rem;">
-          <img src="{% static 'img/blogOne.jpeg' %}" class="card-img-top" alt="">
-          <div class="card-body">
-            <h5 class="card-title">Pratik B.k</h5>
-            <p class="card-text">Front End Developer</p>
-            <a href="#" class="btn btn-primary">Read MOre</a>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
 
 </section>

@@ -45,6 +45,11 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contact-page' %}">Contact</a>
           </li>
+          {% for page in pages %}
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'page' page.slug %}">{{page.title}}</a>
+            </li>
+          {% endfor %}
         </ul>
       </div>
     </div>

@@ -10,5 +10,7 @@ urlpatterns = [
     path('register',views.register,name='register-page'),
     path('logout',views.user_logout,name='logout-page'),
     path('dashboard',views.dashboard,name='dashboard-page'),
+    path('blogs/<slug:slug>/', views.blog_detail, name='blog-detail'),
+    path('page/<slug:slug>',views.pagedetail,name='page'),
 
 ]

@@ -39,7 +39,22 @@ class BlogForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400'}),
         }
 
+from django import forms
+from .models import Pages
+
 class PageForm(forms.ModelForm):
+    STATUS_CHOICES = [
+        ('0', 'Deactive'),
+        ('1', 'Active'),
+    ]
+
+    status = forms.ChoiceField(
+        choices=STATUS_CHOICES,
+        widget=forms.Select(attrs={
+            'class': 'w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400'
+        })
+    )
+
     class Meta:
         model = Pages
         fields = '__all__'
@@ -56,7 +71,6 @@ class PageForm(forms.ModelForm):
             'image': forms.FileInput(attrs={
                 'class': 'mt-1 block w-full p-2 border border-gray-300 rounded-md'
             }),
-            'status': forms.Select(attrs={'class':'w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400'}),
             'description': forms.Textarea(attrs={
                 'class': 'mt-1 block w-full p-2 border border-gray-300 rounded-md'
             }),

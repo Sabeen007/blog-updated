@@ -15,68 +15,18 @@
         <hr class="w-25 m-auto">
       </div>
       <div class="row" data-aos="flip-right" data-aos-offset="200">
+        {% for blog in blogs %}
         <div class="col-sm-12 col-md-4 col-lg-4 col-12">
           <div class="card bg-info text-dark" style="width: 18rem;">
-            <img src="{% static 'img/blogFive.jpg' %}" class="card-img-top" alt="img not found">
+            <img src="{{blog.image.url}}" class="card-img-top" alt="img not found" height="200px">
             <div class="card-body">
-              <h5 class="card-title">Tech Product</h5>
-              <p class="card-text">the tech used in our techinal progres are top class one of them are shown above</p>
-              <a href="#" class="btn btn-primary">Technologia</a>
+              <h5 class="card-title">{{blog.title}} </h5>
+              <p class="card-text">{{blog.description|truncatechars:50}} </p>
+              <a href="{% url 'blog-detail' blog.slug %}" class="btn btn-primary">Read More</a>
             </div>
           </div>
         </div>
-        <div class="col-sm-12 col-md-4 col-lg-4 col-12">
-          <div class="card bg-info text-dark" style="width: 18rem;">
-            <img src="{% static 'img/blogFour.jpg' %}" class="card-img-top" alt="img not found">
-            <div class="card-body">
-              <h5 class="card-title">Tech Product</h5>
-              <p class="card-text">the tech used in our techinal progres are top class one of them are shown above</p>
-              <a href="#" class="btn btn-primary">Technologia</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-4 col-lg-4 col-12">
-          <div class="card bg-info text-dark" style="width: 18rem;">
-            <img src="{% static 'img/blogThree.jpg' %}" class="card-img-top" alt="">
-            <div class="card-body">
-              <h5 class="card-title">Tech Product</h5>
-              <p class="card-text">the tech used in our techinal progres are top class one of them are shown above</p>
-              <a href="#" class="btn btn-primary">Technologia</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-4" data-aos="flip-right" data-aos-offset="200">
-        <div class="col-sm-12 col-md-4 col-lg-4 col-12">
-          <div class="card bg-info text-dark" style="width: 18rem;">
-            <img src="{% static 'img/blogTwo.jpeg' %}" class="card-img-top" alt="img not found">
-            <div class="card-body">
-              <h5 class="card-title">Tech Product</h5>
-              <p class="card-text">the tech used in our techinal progres are top class one of them are shown above</p>
-              <a href="#" class="btn btn-primary">Technologia</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-4 col-lg-4 col-12">
-          <div class="card bg-info text-dark" style="width: 18rem;">
-            <img src="{% static 'img/blogOne.jpeg' %}" class="card-img-top" alt="img not found">
-            <div class="card-body">
-              <h5 class="card-title">Tech Product</h5>
-              <p class="card-text">the tech used in our techinal progres are top class one of them are shown above</p>
-              <a href="#" class="btn btn-primary">Technologia</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-4 col-lg-4 col-12">
-          <div class="card bg-info text-dark" style="width: 18rem;">
-            <img src="{% static 'img/360_F_308697506_9dsBYHXm9FwuW0qcEqimAEXUvzTwfzwe.jpg' %}" class="card-img-top" alt="">
-            <div class="card-body">
-              <h5 class="card-title">Tech Product</h5>
-              <p class="card-text">the tech used in our techinal progres are top class one of them are shown above</p>
-              <a href="#" class="btn btn-primary">Technologia</a>
-            </div>
-          </div>
-        </div>
+      {% endfor %}
       </div>
     </div>
   </section>

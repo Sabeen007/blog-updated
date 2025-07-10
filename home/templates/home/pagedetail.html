@@ -1,0 +1,25 @@
+{% extends 'layout/main.html' %}
+{% load static %}
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block content %}
+<div class="bg-light py-5">
+  <div class="container">
+    <div class="row justify-content-center" data-aos="fade-up" data-aos-offset="200">
+      <div class="col-md-10 col-lg-8">
+        <div class="card shadow-sm">
+          {% if page.image %}
+            <img src="{{ page.image.url }}" class="card-img-top" alt="{{ page.title }}">
+          {% endif %}
+          <div class="card-body">
+            <h2 class="card-title text-center text-primary">{{ page.title }}</h2>
+            <hr>
+            <p class="card-text text-justify">{{ page.description|linebreaks }}</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

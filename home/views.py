@@ -3,16 +3,27 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from user.models import Blog,Pages
 
 # Create your views here.
 def home(request):
-    return render(request,'home/index.html')
+    blogs = Blog.objects.order_by('-id')[:5]
+    return render(request,'home/index.html',{'blogs':blogs})
 
 def about(request):
     return render(request,'home/about.html')
 
 def blog(request):
-    return render(request,'home/blog.html')
+    blogs = Blog.objects.all()
+    return render(request,'home/blog.html',{'blogs':blogs})
+
+def pagedetail(request,slug):
+    page=Pages.objects.get(slug=slug)
+    return render(request,'home/pagedetail.html',{'page':page})
+
+def blog_detail(request,slug):
+    blog=Blog.objects.get(slug=slug)
+    return render(request, 'home/blogdetail.html', {'blog': blog})
 
 def contact(request):
     return render(request,'home/contact.html')
